@@ -104,29 +104,11 @@ function About() {
             </div>
           </div>
         </div>
-
-        {/* Floating Side SVG */}
-        <div>
-          <img 
-            src="/assets/edu.svg" 
-            alt="Education Illustration" 
-            className="edu-illustration"
-          />
-        </div>
       </div>
 
       {/* Skills Section */}
       <h3 className="section-title">Keahlian & Skill</h3>
       <div className="skills-container glass-panel" style={{ padding: '32px' }}>
-        
-        {/* Left Side Illustration */}
-        <div style={{ textAlign: 'center' }}>
-          <img 
-            src="/assets/skill.svg" 
-            alt="Skills Illustration" 
-            className="edu-illustration"
-          />
-        </div>
 
         {/* Right Side Progress Bars */}
         <div className="skills-list">

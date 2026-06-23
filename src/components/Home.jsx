@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaFacebookF, FaInstagram, FaYoutube, FaGoogleDrive, FaUser } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram, FaYoutube, FaUser } from 'react-icons/fa';
 
 function Home({ setActiveTab }) {
   return (
