@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaFacebookF, FaInstagram, FaYoutube, FaGoogleDrive, FaUser, FaBookOpen } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram, FaYoutube, FaGoogleDrive, FaUser } from 'react-icons/fa';
 
 function Home({ setActiveTab }) {
   return (
@@ -66,12 +66,6 @@ function Home({ setActiveTab }) {
             className="action-btn primary"
           >
             <FaUser /> About Me
-          </button>
-          <button 
-            onClick={() => setActiveTab('materi')} 
-            className="action-btn secondary"
-          >
-            <FaBookOpen /> Rangkuman Materi
           </button>
         </div>
 

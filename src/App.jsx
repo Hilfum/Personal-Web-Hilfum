@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Home from './components/Home';
 import About from './components/About';
-import Materi from './components/Materi';
 import './App.css';
 
 function App() {
@@ -13,8 +12,6 @@ function App() {
         return <Home setActiveTab={setActiveTab} />;
       case 'about':
         return <About />;
-      case 'materi':
-        return <Materi />;
       default:
         return <Home setActiveTab={setActiveTab} />;
     }
@@ -47,12 +44,6 @@ function App() {
             className={`nav-item ${activeTab === 'about' ? 'active' : ''}`}
           >
             About Me
-          </button>
-          <button
-            onClick={() => setActiveTab('materi')}
-            className={`nav-item ${activeTab === 'materi' ? 'active' : ''}`}
-          >
-            Materi
           </button>
         </nav>
       </header>
