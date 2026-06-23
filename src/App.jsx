@@ -30,7 +30,7 @@ function App() {
       {/* Floating Glassmorphic Header Navigation */}
       <header className="main-nav">
         <div className="logo-container" onClick={() => setActiveTab('home')}>
-          hilfum.dev
+          hilfum
         </div>
         <nav className="nav-links">
           <button

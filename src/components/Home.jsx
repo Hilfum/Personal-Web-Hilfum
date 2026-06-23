@@ -48,15 +48,6 @@ function Home({ setActiveTab }) {
           >
             <FaYoutube />
           </a>
-          <a 
-            href="https://drive.google.com/drive/folders/1foqmPRAm-7K1-WUcW9WYhxJ96y99ucox?usp=sharing" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="social-btn gdrive"
-            aria-label="Google Drive"
-          >
-            <FaGoogleDrive />
-          </a>
         </div>
 
         {/* Action Buttons to navigate sections */}
