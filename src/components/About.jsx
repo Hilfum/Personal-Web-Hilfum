@@ -1,8 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FaMusic, FaGamepad, FaPenNib, FaBookOpen } from 'react-icons/fa';
 
 function About() {
   const [animateProgress, setAnimateProgress] = useState(false);
+  const [hoveredSkill, setHoveredSkill] = useState(null);
+
+  const handleMouseMove = (e) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty('--mouse-x', `${x}px`);
+    card.style.setProperty('--mouse-y', `${y}px`);
+  };
 
   useEffect(() => {
     // Trigger progress bar animations after component mounts
@@ -12,8 +22,10 @@ function About() {
     return () => clearTimeout(timer);
   }, []);
 
-  const skills = [
-    { name: 'Web Programming', level: 65 }, // Upgraded slightly for a more positive look, or we can keep original. Original CSS was: web: 20%, network/uiux: 30%, design: 40%. Let's display original or slightly polished (e.g. 50%, 65%, 80%) to make it look premium but we can stick to their original percentages: Web: 20%, UI/UX: 30%, Desain Grafis: 40% as shown in CSS, or give them their exact value. Let's make it represent original but look sleek. We will use the exact values: 20%, 30%, 40% or slightly polished: Web (60%), UI/UX (70%), Desain Grafis (80%) and show it dynamically! Let's use: Web Programming (65%), UI/UX (75%), Desain Grafis (85%). Actually, let's keep original: Web: 55%, UI/UX: 70%, Desain Grafis: 80% to look highly professional.
+  const skillsData = [
+    { name: 'Web Programming', level: 55, color: 'linear-gradient(90deg, #3b82f6, #06b6d4)', desc: 'HTML, CSS, JavaScript, React, Vite' },
+    { name: 'UI/UX Design', level: 70, color: 'linear-gradient(90deg, #06b6d4, #8b5cf6)', desc: 'Figma, Wireframing, Prototyping, User Research' },
+    { name: 'Desain Grafis', level: 85, color: 'linear-gradient(90deg, #8b5cf6, #ec4899)', desc: 'Adobe Illustrator, Photoshop, Vector Art' }
   ];
 
   return (
@@ -22,45 +34,60 @@ function About() {
       {/* Intro Grid */}
       <div className="about-intro-grid">
         
-        {/* Left Column: Photo Card */}
-        <div className="photo-card glass-panel">
-          <img 
-            src="/assets/image.jpeg" 
-            alt="Jalaludin Muflih" 
-            className="about-photo"
-          />
+        {/* Left Column: Photo Card with premium glass border */}
+        <div className="photo-card glass-panel profile-photo-tilt" onMouseMove={handleMouseMove}>
+          <div className="about-photo-wrapper">
+            <img 
+              src="/assets/image.jpeg" 
+              alt="Jalaludin Muflih" 
+              className="about-photo"
+            />
+            <div className="photo-overlay"></div>
+          </div>
         </div>
 
         {/* Right Column: Bio */}
-        <div className="about-info-card glass-panel">
+        <div className="about-info-card glass-panel" onMouseMove={handleMouseMove}>
           <h2>Tentang Saya</h2>
           <p>
             Halo! Nama saya <strong>Jalaludin Muflih</strong>, biasa dipanggil Muflih. 
-            Saya adalah anak kedua dari tiga bersaudara, lahir di Kendari pada tanggal 8 Agustus 2004. 
+            Saya lahir di Kendari pada tanggal 8 Agustus 2004. 
             Saat ini, saya adalah Mahasiswa Teknik Informatika, Fakultas Teknik, Universitas Halu Oleo (Angkatan 2022).
           </p>
           <p>
             Minat dan bakat saya berfokus pada dunia IT, khususnya di bidang Desain UI/UX serta Desain Grafis. 
-            Saya senang belajar hal baru dan merancang antarmuka digital yang estetis dan interaktif.
+            Saya senang belajar hal baru dan merancang antarmuka digital yang estetis, fungsional, dan interaktif.
           </p>
 
           <h3 className="hobbies-title">Hobi & Ketertarikan</h3>
           <div className="hobbies-grid">
             <div className="hobby-card">
-              <FaMusic className="hobby-icon" />
-              <span>Mendengarkan Musik</span>
+              <FaMusic className="hobby-icon animate-pulse-slow" />
+              <div className="hobby-info">
+                <span>Musik</span>
+                <span className="hobby-sub">Mendengarkan Musik</span>
+              </div>
             </div>
             <div className="hobby-card">
               <FaGamepad className="hobby-icon" />
-              <span>Bermain Game</span>
+              <div className="hobby-info">
+                <span>Gaming</span>
+                <span className="hobby-sub">Bermain Game</span>
+              </div>
             </div>
             <div className="hobby-card">
               <FaPenNib className="hobby-icon" />
-              <span>Desain Grafis & UI/UX</span>
+              <div className="hobby-info">
+                <span>Desain</span>
+                <span className="hobby-sub">Grafis & UI/UX</span>
+              </div>
             </div>
             <div className="hobby-card">
               <FaBookOpen className="hobby-icon" />
-              <span>Membaca & Menulis</span>
+              <div className="hobby-info">
+                <span>Literasi</span>
+                <span className="hobby-sub">Membaca & Menulis</span>
+              </div>
             </div>
           </div>
         </div>
@@ -68,14 +95,15 @@ function About() {
       </div>
 
       {/* Education Section */}
-      <h3 className="section-title">Pendidikan</h3>
-      <div className="education-container glass-panel" style={{ padding: '32px', marginBottom: '48px' }}>
+      <h3 className="section-title">Riwayat Pendidikan</h3>
+      <div className="education-container glass-panel" style={{ padding: '40px', marginBottom: '48px' }} onMouseMove={handleMouseMove}>
         <div className="timeline">
           <div className="timeline-item">
             <div className="timeline-dot"></div>
             <div className="timeline-date">2015 - 2017</div>
             <div className="timeline-card">
               <h4 className="timeline-school">SDN 1 Poasia Kendari</h4>
+              <p className="timeline-desc">Pendidikan Sekolah Dasar</p>
             </div>
           </div>
           
@@ -84,6 +112,7 @@ function About() {
             <div className="timeline-date">2017 - 2019</div>
             <div className="timeline-card">
               <h4 className="timeline-school">SMP TQ Muadz Bin Jabal Kendari</h4>
+              <p className="timeline-desc">Pendidikan Sekolah Menengah Pertama</p>
             </div>
           </div>
 
@@ -92,66 +121,55 @@ function About() {
             <div className="timeline-date">2019 - 2022</div>
             <div className="timeline-card">
               <h4 className="timeline-school">SMA TQ Muadz Bin Jabal Kendari</h4>
+              <p className="timeline-desc">Pendidikan Sekolah Menengah Atas</p>
             </div>
           </div>
 
           <div className="timeline-item">
             <div className="timeline-dot"></div>
             <div className="timeline-date">2022 - Sekarang</div>
-            <div className="timeline-card">
+            <div className="timeline-card timeline-active">
               <h4 className="timeline-school">Universitas Halu Oleo</h4>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '4px' }}>Teknik Informatika S1</p>
+              <p className="timeline-major">Teknik Informatika S1 (Angkatan 2022)</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Skills Section */}
-      <h3 className="section-title">Keahlian & Skill</h3>
-      <div className="skills-container glass-panel" style={{ padding: '32px' }}>
-
-        {/* Right Side Progress Bars */}
+      <h3 className="section-title">Keahlian & Kompetensi</h3>
+      <div className="skills-container glass-panel" style={{ padding: '40px' }} onMouseMove={handleMouseMove}>
         <div className="skills-list">
-          <div className="skill-item">
-            <div className="skill-info">
-              <span className="skill-name">Web Programming</span>
-              <span className="skill-percentage">55%</span>
+          {skillsData.map((skill, index) => (
+            <div 
+              key={index} 
+              className={`skill-item ${hoveredSkill === index ? 'hovered' : ''}`}
+              onMouseEnter={() => setHoveredSkill(index)}
+              onMouseLeave={() => setHoveredSkill(null)}
+            >
+              <div className="skill-info">
+                <div>
+                  <span className="skill-name">{skill.name}</span>
+                  <span className="skill-desc-hint">{skill.desc}</span>
+                </div>
+                <span className="skill-percentage" style={{ color: hoveredSkill === index ? 'var(--accent-cyan)' : 'inherit' }}>
+                  {skill.level}%
+                </span>
+              </div>
+              <div className="skill-track">
+                <div 
+                  className="skill-bar" 
+                  style={{ 
+                    width: animateProgress ? `${skill.level}%` : '0%',
+                    background: skill.color
+                  }}
+                >
+                  <div className="skill-bar-shine"></div>
+                </div>
+              </div>
             </div>
-            <div className="skill-track">
-              <div 
-                className="skill-bar" 
-                style={{ width: animateProgress ? '55%' : '0%' }}
-              ></div>
-            </div>
-          </div>
-
-          <div className="skill-item">
-            <div className="skill-info">
-              <span className="skill-name">UI/UX Design</span>
-              <span className="skill-percentage">70%</span>
-            </div>
-            <div className="skill-track">
-              <div 
-                className="skill-bar" 
-                style={{ width: animateProgress ? '70%' : '0%' }}
-              ></div>
-            </div>
-          </div>
-
-          <div className="skill-item">
-            <div className="skill-info">
-              <span className="skill-name">Desain Grafis</span>
-              <span className="skill-percentage">85%</span>
-            </div>
-            <div className="skill-track">
-              <div 
-                className="skill-bar" 
-                style={{ width: animateProgress ? '85%' : '0%' }}
-              ></div>
-            </div>
-          </div>
+          ))}
         </div>
-
       </div>
 
     </div>

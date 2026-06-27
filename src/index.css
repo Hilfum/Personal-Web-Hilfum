@@ -1,20 +1,21 @@
 :root {
-  /* Elegant Color Palette */
-  --bg-primary: #0a0f1d;
-  --bg-secondary: #111827;
-  --accent-blue: #3b82f6;
+  /* Elegant Color Palette - Inspired by React Bits (reactbits.dev) */
+  --bg-primary: #030303;
+  --bg-secondary: #09090b;
+  --accent-blue: #2563eb;
   --accent-cyan: #06b6d4;
-  --accent-purple: #8b5cf6;
-  --text-primary: #f3f4f6;
-  --text-secondary: #9ca3af;
-  --glass-bg: rgba(17, 24, 39, 0.55);
+  --accent-purple: #7c3aed;
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --glass-bg: rgba(9, 9, 11, 0.65);
   --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-highlight: rgba(255, 255, 255, 0.03);
-  --glass-shadow: rgba(0, 0, 0, 0.3);
+  --glass-highlight: rgba(255, 255, 255, 0.02);
+  --glass-shadow: rgba(0, 0, 0, 0.5);
 
   /* Typography */
   --font-heading: 'Outfit', 'Ubuntu', sans-serif;
   --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
   
   /* Transitions */
   --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -56,7 +57,7 @@ html, body {
   background: var(--accent-cyan);
 }
 
-/* Ambient Animated Blobs in Background */
+/* Crisp Grid Background with Vignette Overlay (reactbits.dev style) */
 .bg-ambient-layer {
   position: fixed;
   top: 0;
@@ -65,53 +66,13 @@ html, body {
   height: 100%;
   z-index: -10;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 50%, #0c1328 0%, #050814 100%);
-}
-
-.bg-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.25;
-  animation: float 20s infinite alternate;
-}
-
-.bg-blob-1 {
-  top: -10%;
-  left: -10%;
-  width: 50vw;
-  height: 50vw;
-  background: radial-gradient(circle, var(--accent-purple) 0%, transparent 80%);
-}
-
-.bg-blob-2 {
-  bottom: -10%;
-  right: -10%;
-  width: 60vw;
-  height: 60vw;
-  background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 80%);
-  animation-delay: -5s;
-}
-
-.bg-blob-3 {
-  top: 40%;
-  left: 60%;
-  width: 40vw;
-  height: 40vw;
-  background: radial-gradient(circle, var(--accent-blue) 0%, transparent 80%);
-  animation-delay: -10s;
-}
-
-@keyframes float {
-  0% {
-    transform: translate(0, 0) scale(1) rotate(0deg);
-  }
-  50% {
-    transform: translate(5%, 5%) scale(1.05) rotate(180deg);
-  }
-  100% {
-    transform: translate(-5%, -5%) scale(0.95) rotate(360deg);
-  }
+  background-color: #030303;
+  background-image: 
+    radial-gradient(circle at center, transparent 20%, #030303 90%),
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+  background-position: center;
 }
 
 /* Glassmorphism Utilities */

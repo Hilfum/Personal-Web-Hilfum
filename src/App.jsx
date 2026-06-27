@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Home from './components/Home';
 import About from './components/About';
-import SideRays from './components/SideRays';
+import Portfolio from './components/Portfolio';
 import GooeyNav from './components/GooeyNav';
+import Particles from './components/Particles';
 import './App.css';
 
 function App() {
@@ -10,13 +11,16 @@ function App() {
 
   const navItems = [
     { label: 'Home', href: '#home' },
-    { label: 'About Me', href: '#about' }
+    { label: 'About Me', href: '#about' },
+    { label: 'Portfolio', href: '#portfolio' }
   ];
 
-  const activeIndex = activeTab === 'home' ? 0 : 1;
+  const activeIndex = activeTab === 'home' ? 0 : activeTab === 'about' ? 1 : 2;
 
   const handleTabChange = (index) => {
-    setActiveTab(index === 0 ? 'home' : 'about');
+    if (index === 0) setActiveTab('home');
+    else if (index === 1) setActiveTab('about');
+    else if (index === 2) setActiveTab('portfolio');
   };
 
   const renderActivePage = () => {
@@ -25,6 +29,8 @@ function App() {
         return <Home setActiveTab={setActiveTab} />;
       case 'about':
         return <About />;
+      case 'portfolio':
+        return <Portfolio />;
       default:
         return <Home setActiveTab={setActiveTab} />;
     }
@@ -33,23 +39,14 @@ function App() {
   return (
     <div className="app-container">
       
-      {/* Premium Ambient Background Blobs */}
+      {/* Sharp grid background with vignette overlay & interactive particles */}
       <div className="bg-ambient-layer" aria-hidden="true">
-        <div className="bg-blob bg-blob-1"></div>
-        <div className="bg-blob bg-blob-2"></div>
-        <div className="bg-blob bg-blob-3"></div>
-        <SideRays
-          speed={1.5}
-          rayColor1="#06b6d4"
-          rayColor2="#3b82f6"
-          intensity={1.5}
-          spread={1.5}
-          origin="top-right"
-          tilt={-10}
-          saturation={1.5}
-          blend={0.5}
-          falloff={1.5}
-          opacity={0.6}
+        <Particles 
+          particleCount={90} 
+          particleColor="rgba(6, 182, 212, 0.4)" 
+          lineColor="rgba(6, 182, 212, 0.12)" 
+          maxDistance={110} 
+          speed={0.4} 
         />
       </div>
 
