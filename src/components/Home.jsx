@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaInstagram, FaYoutube, FaUser, FaBriefcase, FaDiscord, FaGithub } from 'react-icons/fa';
+import { FaInstagram, FaYoutube, FaUser, FaBriefcase, FaDiscord, FaGithub, FaDownload } from 'react-icons/fa';
 
 function Home({ setActiveTab }) {
   // Typing Animation Effect
@@ -141,21 +141,29 @@ function Home({ setActiveTab }) {
         </div>
 
         {/* Action Buttons to navigate sections */}
-        <div className="action-buttons" style={{ display: 'flex', flexDirection: 'row', gap: '12px', justifyContent: 'center' }}>
+        <div className="action-buttons" style={{ display: 'flex', flexDirection: 'row', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
           <button 
             onClick={() => setActiveTab('about')} 
             className="action-btn primary"
-            style={{ flex: 1, padding: '12px 20px' }}
+            style={{ flex: 1, minWidth: '120px', padding: '12px 20px' }}
           >
             <FaUser /> About Me
           </button>
           <button 
             onClick={() => setActiveTab('portfolio')} 
             className="action-btn secondary"
-            style={{ flex: 1, padding: '12px 20px' }}
+            style={{ flex: 1, minWidth: '120px', padding: '12px 20px' }}
           >
             <FaBriefcase /> Portfolio
           </button>
+          <a 
+            href="/assets/cv_jalaludin_muflih.pdf" 
+            download="CV_Jalaludin_Muflih.pdf"
+            className="action-btn secondary"
+            style={{ flex: 1, minWidth: '120px', padding: '12px 20px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+          >
+            <FaDownload /> Unduh CV
+          </a>
         </div>
 
       </div>

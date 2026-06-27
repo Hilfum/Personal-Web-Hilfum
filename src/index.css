@@ -1,25 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
 :root {
-  /* Elegant Color Palette - Inspired by React Bits (reactbits.dev) */
-  --bg-primary: #030303;
-  --bg-secondary: #09090b;
-  --accent-blue: #2563eb;
-  --accent-cyan: #06b6d4;
-  --accent-purple: #7c3aed;
-  --text-primary: #fafafa;
-  --text-secondary: #a1a1aa;
-  --glass-bg: rgba(9, 9, 11, 0.65);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-highlight: rgba(255, 255, 255, 0.02);
-  --glass-shadow: rgba(0, 0, 0, 0.5);
+  /* Elegant Retro Color Palette */
+  --bg-primary: #03030f;
+  --bg-secondary: #08081a;
+  --accent-blue: #0088ff;
+  --accent-cyan: #00ffcc;
+  --accent-purple: #9900ff;
+  --text-primary: #ffffff;
+  --text-secondary: #8a8a9e;
+  --glass-bg: rgba(4, 4, 12, 0.95);
+  --glass-border: #ffffff;
+  --glass-highlight: rgba(255, 255, 255, 0.1);
+  --glass-shadow: rgba(0, 0, 0, 0.85);
 
   /* Typography */
-  --font-heading: 'Outfit', 'Ubuntu', sans-serif;
+  --font-heading: 'Press Start 2P', monospace;
+  --font-retro: 'VT323', monospace;
   --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
   
   /* Transitions */
-  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-fast: all 0.2s ease;
+  --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.15s ease;
+}
+
+/* Theme: Dracula (Shadow Castle) */
+body.dracula {
+  --bg-primary: #121214;
+  --bg-secondary: #1a1a24;
+  --accent-blue: #bd93f9;
+  --accent-cyan: #50fa7b;
+  --accent-purple: #ff79c6;
+  --text-primary: #f8f8f2;
+  --text-secondary: #6272a4;
+  --glass-bg: rgba(26, 26, 36, 0.96);
+  --glass-border: #bd93f9;
+  --glass-shadow: rgba(0, 0, 0, 0.9);
+}
+
+/* Theme: Nord (Ice Dungeon) */
+body.nord {
+  --bg-primary: #1a1c23;
+  --bg-secondary: #242933;
+  --accent-blue: #81a1c1;
+  --accent-cyan: #88c0d0;
+  --accent-purple: #b48ead;
+  --text-primary: #eceff4;
+  --text-secondary: #8fbcbb;
+  --glass-bg: rgba(36, 41, 51, 0.96);
+  --glass-border: #88c0d0;
+  --glass-shadow: rgba(0, 0, 0, 0.8);
+}
+
+/* Theme: Solarized (Desert Ruins) */
+body.solarized {
+  --bg-primary: #00141a;
+  --bg-secondary: #002b36;
+  --accent-blue: #268bd2;
+  --accent-cyan: #2aa198;
+  --accent-purple: #cb4b16;
+  --text-primary: #93a1a1;
+  --text-secondary: #586e75;
+  --glass-bg: rgba(0, 43, 54, 0.96);
+  --glass-border: #2aa198;
+  --glass-shadow: rgba(0, 0, 0, 0.9);
 }
 
 /* Global Reset & Base */
@@ -42,22 +87,23 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Custom Scrollbar */
+/* Retro Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 12px;
 }
 ::-webkit-scrollbar-track {
   background: var(--bg-primary);
+  border-left: 2px solid var(--accent-blue);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+  background: var(--bg-secondary);
+  border: 3px solid var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-cyan);
 }
 
-/* Crisp Grid Background with Vignette Overlay (reactbits.dev style) */
+/* Retro Background Layer (Pixel Grid Pattern) */
 .bg-ambient-layer {
   position: fixed;
   top: 0;
@@ -66,51 +112,78 @@ html, body {
   height: 100%;
   z-index: -10;
   overflow: hidden;
-  background-color: #030303;
+  background-color: var(--bg-primary);
   background-image: 
-    radial-gradient(circle at center, transparent 20%, #030303 90%),
-    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-  background-size: 100% 100%, 40px 40px, 40px 40px;
+    radial-gradient(circle at center, transparent 30%, var(--bg-primary) 95%),
+    linear-gradient(rgba(255, 255, 255, 0.008) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.008) 2px, transparent 2px);
+  background-size: 100% 100%, 20px 20px, 20px 20px;
   background-position: center;
 }
 
-/* Glassmorphism Utilities */
+/* Scanned CRT Effect */
+body::after {
+  content: " ";
+  display: block;
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.12) 50%),
+              linear-gradient(90deg, rgba(255, 0, 0, 0.015), rgba(0, 255, 0, 0.005), rgba(0, 0, 255, 0.015));
+  background-size: 100% 4px, 6px 100%;
+  z-index: 99999;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* Glassmorphism Utilities Redefined as Retro Game RPG UI Boxes */
 .glass-panel {
   background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 8px 32px 0 var(--glass-shadow);
-  border-radius: 16px;
-  overflow: hidden;
+  border: 4px double var(--glass-border);
+  box-shadow: 6px 6px 0px var(--glass-shadow);
+  border-radius: 0px !important;
+  overflow: visible;
+  padding: 24px;
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  transition: var(--transition-smooth);
+  background: var(--bg-primary);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 4px 4px 0px var(--glass-shadow);
+  border-radius: 0px !important;
+  transition: var(--transition-fast);
 }
 
 .glass-card:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.1);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  background: var(--bg-secondary);
+  border-color: var(--accent-cyan);
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0px var(--glass-shadow);
 }
 
-/* Headings */
-h1, h2, h3, h4, h5, h6 {
+/* Typography Adjustments for Retro Vibe */
+h1, h2 {
   font-family: var(--font-heading);
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.4;
   color: var(--text-primary);
-  font-weight: 700;
-  letter-spacing: -0.02em;
 }
 
-/* Layout container */
+h3, h4, h5, h6 {
+  font-family: var(--font-retro);
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+h3 { font-size: 2.2rem; }
+h4 { font-size: 1.8rem; }
+h5 { font-size: 1.4rem; }
+
+/* Root Grid structure */
 #root {
   min-height: 100vh;
   display: flex;
